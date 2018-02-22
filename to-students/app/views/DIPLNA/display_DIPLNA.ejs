@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8"/>
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Disciplinas</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+		<link href="https://fonts.googleapis.com/css?family=Days+One|Scada" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+	</head>
+
+	<body class="all-screen">
+		<!-- ** NAVBAR ** -->
+		<% include ../patterns/navbar.ejs%>
+		<!-- ** NAVBAR ** -->
+
+		<div class="container-fluid">
+			<div class="row my-row">
+				<div class="my-btn-div">
+					<button type="button" class="btn my-btn" onclick="location.href='/disciplina/cadastro'"><i class="fa fa-plus"></i> Cadastrar nova disciplina</button>
+				</div>
+				<div class="my-btn-div">
+					<button type="button" class="btn my-btn"><i class="fa fa-filter"></i> Filtrar</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<div class="row">
+		<% if(jDIPLNA.length > 0) { %>
+				<table class="table table-dark">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Disciplina</th>
+							<th scope="col">Professor</th>
+							<th scope="col">E-mail Prof.</th>
+							<th scope="col">Status</th>
+						</tr>
+					</thead>
+					<tbody class="my-table-tbody">
+						<% for(var i = 0; i < jDIPLNA.length; i++) {%>
+							<tr onclick="location.href='/disciplina/detalhes?cd_diplna=<%= jDIPLNA[i].CD_DIPLNA %>'">
+								<th><%= i+1 %></th>
+								<td><%= jDIPLNA[i].DS_DIPLNA %> </td>
+								<td><%= jDIPLNA[i].NM_PROF %></td>
+								<td><%= jDIPLNA[i].DS_PROF_EMAIL %></td>
+								<td>
+									<% if(jDIPLNA[i].ID_STATUS == 'E'){ %>
+										Em andamento
+									<% } else if (jDIPLNA[i].ID_STATUS == 'C') { %>
+										Concluída
+									<% } %>
+								</td>
+							</tr>
+						<% } %>
+					</tbody>
+				</table>
+		<% }else{ %>
+				<div>
+					<label>Ainda não existem disciplinas cadastradas!</label>
+				</div>
+		<% } %>
+			</div>
+		</div>		
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+		<script type="text/javascript">
+			function teste(){
+				alert('testeeee');
+			}
+		</script>
+
+	</body>
+	
+</html>

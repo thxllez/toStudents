@@ -1,0 +1,64 @@
+.my-nav{
+	background-color: #0c0c0c;
+}
+
+.my-logo-font{
+	font-family: 'Days One', sans-serif;
+	color: white; 
+}
+
+.my-mid-font{
+	font-family: 'Days One', sans-serif;
+	color: #01c9e2;
+}
+
+.my-dropdown a:hover{
+	background-color: #212529;
+}
+
+*{
+	font-family: 'Scada', sans-serif;
+	color: white;
+}
+
+.my-icon{
+	color: #01c9e2;
+	font-size:30px;
+}
+
+.my-table-tbody tr:hover{
+	background-color: #029baf;
+}
+
+.my-table-tbody{
+	background-color: #026e7c;
+	cursor: pointer;
+}
+
+.all-screen{
+	background-color: #212529;
+}
+
+.my-row{
+	padding:20px 20px 20px 30px;
+}
+
+.my-btn{
+	background-color: #01c9e2;
+}
+
+.my-btn-div{
+	padding-right: 15px;
+}
+
+.all-screen button:hover{
+	background-color: #026e7c;
+}
+
+.all-screen a:hover{
+	color: #026e7c;
+}
+
+.my-icon:hover{
+	color: #026e7c;
+}

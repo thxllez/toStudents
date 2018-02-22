@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8"/>
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Disciplinas</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+		<link href="https://fonts.googleapis.com/css?family=Days+One|Scada" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<script type="text/javascript" src="/js/bootbox.min.js"></script>
+
+	</head>
+
+	<body class="all-screen">
+		<!-- ** NAVBAR ** -->
+		<% include ../patterns/navbar.ejs%>
+		<!-- ** NAVBAR ** -->
+
+		<div class="container-fluid">
+			<div class="row" style="padding-left: 15px; padding-top: 15px;">
+				<div class="col-md-5">
+
+					<% if(jValidation.length > 0) { %>
+					<div class="alert alert-danger" role="alert" style="background-color: #026e7c;">
+						<ul>
+							<% for(var i =0; i < jValidation.length; i++) { %>
+								<li>
+									<%= jValidation[i].msg %>
+								</li>
+							<% } %>
+						</ul>
+					</div>
+					<% } %>
+
+					<% if (jDIPLNA.length > 0) { %>
+
+						<form id="mainform" name="mainform" action="/disciplina/detalhes?cd_diplna=<%= jDIPLNA[0].CD_DIPLNA %>" method="post">
+							<div class="form-group">
+								<input type="hidden" name="cd_diplna" id="cd_diplna" value="<%= jDIPLNA[0].CD_DIPLNA %>">
+					            <div>
+					            	<label style="padding-top: 10px;">Disciplina:</label>
+					                <input class="form-control" type="text" id="ds_diplna" name="ds_diplna" value="<%= jDIPLNA[0].DS_DIPLNA %>" placeholder="Título da disciplina"/>
+					            </div>
+
+					            <div>
+					               	<label style="padding-top: 10px;">Professor:</label>
+					                <input class="form-control" type="text" id="nm_prof" name="nm_prof" value="<%= jDIPLNA[0].NM_PROF %>" placeholder="Nome do professor"/>
+					            </div>
+
+					            <div>
+					            	<label style="padding-top: 10px;">E-mail:</label>
+					                <input class="form-control" type="text" id="ds_prof_email" name="ds_prof_email" value="<%= jDIPLNA[0].DS_PROF_EMAIL %>" placeholder="E-mail do professor"/>
+					            </div>
+
+					            <label style="padding-top: 10px;">Status da Disciplina:</label>
+					            <div class="form-check">
+					            	<%if (jDIPLNA[0].ID_STATUS == 'E'){ %>
+					            		<input class="form-check-input" type="radio" id="id_status" name="id_status" value="E" checked>
+					            	<% }else{ %>
+					            		<input class="form-check-input" type="radio" id="id_status" name="id_status" value="E">
+					            	<% } %>
+									<label class="form-check-label">
+								    	Em andamento
+									</label>
+								</div>
+								<div class="form-check">
+					            	<%if (jDIPLNA[0].ID_STATUS == 'C'){ %>
+					            		<input class="form-check-input" type="radio" id="id_status" name="id_status" value="C" checked>
+					            	<% }else{ %>
+					            		<input class="form-check-input" type="radio" id="id_status" name="id_status" value="C">
+					            	<% } %>
+									<label class="form-check-label">
+								    	Concluído
+									</label>
+								</div>
+
+								<div style="padding-top: 15px;">
+									<button type="submit" class="btn my-btn"><i class="fa fa-floppy-o"></i> Salvar</button>
+									<button type="button" class="btn my-btn" onclick="bootbox.confirm('Deseja excluir permanentemente a disciplina e todas as suas informações?', deleteDIPLNA('<%= jDIPLNA[0].CD_DIPLNA %>',1))"><i class="fa fa-trash-o"></i> Excluir</button>
+								</div>
+				            </div>
+				        </form>
+
+					<% } %>
+
+				</div>
+			</div>
+		</div>		
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+		<script type="text/javascript">
+			function deleteDIPLNA(cd_diplna,cd_aluno){
+				document.mainform.action = "/disciplina/delete?cd_aluno="+cd_aluno+"&cd_diplna="+cd_diplna;
+				document.mainform.submit();
+			}
+		</script>
+	</body>
+
+</html>

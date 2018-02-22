@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8"/>
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Cadastro de Disciplinas</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+		<link href="https://fonts.googleapis.com/css?family=Days+One|Scada" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+	</head>
+
+	<body class="all-screen">
+		<!-- ** NAVBAR ** -->
+		<% include ../patterns/navbar.ejs%>
+		<!-- ** NAVBAR ** -->
+
+		<div class="container-fluid" style="padding-top: 10px;">
+			<div class="row">
+				<div class="col-md-6">
+					<% if(jValidation.length > 0) { %>
+					<div class="alert alert-danger" role="alert" style="background-color: #026e7c;">
+						<ul>
+							<% for(var i =0; i < jValidation.length; i++) { %>
+								<li>
+									<%= jValidation[i].msg %>
+								</li>
+							<% } %>
+						</ul>
+					</div>
+					<% } %>
+
+					<form action="/disciplina/cadastro" method="post">
+						
+						<div class="form-group">
+
+				            <div>
+				            	<label>Disciplina:</label>
+				                <input class="form-control" type="text" id="ds_diplna" name="ds_diplna" value="<%= jCadDIPLNA.ds_diplna %>" placeholder="Título da disciplina"/>
+				            </div>
+
+				            <div>
+				               	<label>Professor:</label>
+				                <input class="form-control" type="text" id="nm_prof" name="nm_prof" value="<%= jCadDIPLNA.nm_prof %>" placeholder="Nome do professor"/>
+				            </div>
+
+				            <div>
+				            	<label>E-mail:</label>
+				                <input class="form-control" type="text" id="ds_prof_email" name="ds_prof_email" value="<%= jCadDIPLNA.ds_prof_email %>" placeholder="E-mail do professor"/>
+				            </div>
+
+				            <div class="my-btn-div" style="padding-top: 20px;">
+				            	<button type="submit" class="btn my-btn"><i class="fa fa-floppy-o"></i> Salvar</button>
+							</div>
+			            </div>
+			        </form>
+		        </div>
+	    	</div>
+		</div>
+
+
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="/js/js.js"></script>
+		
+	</body>
+	
+</html>
